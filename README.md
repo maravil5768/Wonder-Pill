@@ -96,8 +96,11 @@ assumes: a project has to be finished to be judged
   gut-check: only interesting if the hard part is the
   unfinishedness, not the topic
 
-scrapped: what if it ran for a year? — the deadline is real,
-this isn't a thing you can invert
+scrapped: what if it ran for a year?
+  derivation: inverts the deadline
+  flaw: the deadline is a hard wall, not a thing you can invert
+  judgment: scrapped for generativity — there's nowhere for
+  the thread to go once you're standing in "no deadline"
 ```
 
 Every what-if is **derived by inverting a named assumption** — never invented freely. That single constraint is the whole trick, and the reason the output isn't the usual vague "what if you thought bigger?" filler.
@@ -120,7 +123,7 @@ The map is deliberately *not* a tidy tree radiating evenly from a center. Real t
 
 - **Seed nodes** sit *outside* the branch they caused, further from the center than their own consequence. This is where "why did it think that" lives — a real fact, a historical precedent, an oddity it found while looking around. The map reads inward as well as outward.
 - **Uneven depth.** One branch gets a single hop because the thread ended there. Another goes four deep because it kept opening. A map where every branch is exactly three deep is a map that stopped thinking on a schedule rather than when it ran out of thread.
-- **Scrapped what-ifs** float detached at the edges, struck through, *with the reason they died.* This is more useful than it sounds: it shows you a direction that's already been checked, and sometimes you'll disagree with the reason and pick it back up. Dead ends are information.
+- **Scrapped what-ifs** float detached at the edges, struck through, showing *where it came from, what's wrong with it, and why that was judged disqualifying* — three separate fields, not one blended reason. Kills can only happen for being a genuine dead end, never for just sounding implausible or weird, so an idea that's out there but still generative survives. This is more useful than it sounds: it shows you a direction that's already been checked, and sometimes you'll disagree with the call and pick it back up. Dead ends are information.
 - **Cross-links** connect branches that collided on the same underlying tension. A pure tree structurally cannot show convergence, and convergence is often the most interesting thing on the whole map — it usually means the real problem is one level up from where you were looking.
 - **Grounded vs. feral** is marked by border style, not just position. Feral threads are kept deliberately. They're not failures of the process; they're the point of letting it run loose.
 
@@ -185,7 +188,7 @@ Skip the questions by front-loading context yourself: *"two weeks, $30, has to f
 <tr><td><b>0</b></td><td><b>Intake</b></td><td>Three questions, max. Calibrates the leash length.</td></tr>
 <tr><td><b>1</b></td><td><b>Oddity hunt</b></td><td>One cheap pass for a genuinely weird fact. Fails fast, never repeats per-branch. Becomes a seed node.</td></tr>
 <tr><td><b>2</b></td><td><b>Assumption audit</b></td><td>Surface 3–5 load-bearing assumptions. Invert each. <i>The inversion is the what-if.</i> Keep the provenance.</td></tr>
-<tr><td><b>3</b></td><td><b>Tendrils</b></td><td>Each branch runs through scale / time / reversal / audience / material / sense / causality. Depth varies. Scraps get kept with their cause of death.</td></tr>
+<tr><td><b>3</b></td><td><b>Tendrils</b></td><td>Each branch runs through scale / time / reversal / audience / material / sense / causality. Depth varies. Scraps get kept with where they came from, what's wrong with them, and why that was disqualifying — only a genuine dead end can kill one, never just sounding implausible.</td></tr>
 <tr><td><b>4</b></td><td><b>Gut-check</b></td><td>One line per branch: where the real difficulty hides. Tag <code>grounded</code> or <code>feral</code>.</td></tr>
 <tr><td><b>5</b></td><td><b>Render</b></td><td>Interactive map, then orientation, then written wonderings.</td></tr>
 <tr><td><b>6</b></td><td><b>End open</b></td><td>An invitation, never a verdict.</td></tr>
