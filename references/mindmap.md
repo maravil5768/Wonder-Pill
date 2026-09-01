@@ -28,7 +28,11 @@ const N = [
   ['b1','branch',110,250,260,'what if it fed on the environment?','assumes: durability means resisting it','the hard part is controlling the reaction, not starting it'],
   ['b1t1','tendril',400,250,230,'seawater as a curing agent'],
   ['s1','seed',120,150,240,'roman marine concrete got stronger in seawater'],
-  ['x1','scrapped',60,660,250,'what if it floated?','trades a 500-year problem for a 5-year mooring problem'],
+  // scrapped: id, type, x, y, w, title, derivation, flaw, judgment
+  ['x1','scrapped',60,660,250,'what if it floated?',
+    'inverts: a bridge has to be a fixed structure',
+    'trades a 500-year erosion problem for a 5-year mooring-maintenance problem',
+    'scrapped for generativity, not plausibility — buildable, but the thread stops once you name the trade'],
 ];
 const E = [ ['topic','b1','solid'], ['s1','b1','dotted'], ['b1','b1t1','solid'], ['b2','b5','cross'] ];
 ```
@@ -41,7 +45,7 @@ Node types and their styling:
 | `branch` | Solid border, `--bg-accent` tint, premise line 11–12px muted above the what-if |
 | `tendril` | No border or a single left rule, `--surface-1`, 12px |
 | `seed` | **Dotted** border, muted text, small `seed` label |
-| `scrapped` | **Dashed** border, 0.5 opacity, title struck through, reason underneath |
+| `scrapped` | **Dashed** border, 0.5 opacity, title struck through, derivation as a small muted line (like a branch's premise); flaw and judgment both shown in the detail strip on click |
 | feral branch | Dashed border instead of solid |
 
 ---
@@ -101,6 +105,7 @@ Initial scale around **0.55** — enough that the shape of the map reads immedia
 - [ ] No two node boxes overlap
 - [ ] Branch radii and depths are visibly uneven
 - [ ] Seeds sit outside their branches; scrapped nodes are detached
+- [ ] Every scrapped node carries all three fields — derivation, flaw, and judgment — and the judgment names generativity, not plausibility, as the reason it died
 - [ ] Every branch shows both its premise and its what-if
 - [ ] Legend present, matching the border styles actually used
 - [ ] Drag, zoom, and click all work after streaming completes

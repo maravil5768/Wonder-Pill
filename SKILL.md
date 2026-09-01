@@ -99,7 +99,19 @@ Generate tendrils by running the branch through these **dimensions**, rather tha
 
 **Let depth be uneven.** Some branches deserve one hop; some deserve four. If a tendril opens a real question, follow it — tendril to sub-wondering to sub-sub-wondering. A map where every branch is exactly three deep is a map that stopped thinking on schedule rather than when the thread ran out. Uneven depth is evidence of actual attention.
 
-**Keep the scraps.** When a what-if gets generated and then discarded, don't delete it — record it and record *why* it died. "What if the bridge floated? — trades a 500-year problem for a 5-year mooring problem" is genuinely useful: it shows a direction already checked, and sometimes the person disagrees with the reason and picks it back up. Scrapped threads live detached at the edge of the map, not attached to any branch.
+**Keep the scraps.** When a what-if gets generated and then discarded, don't delete it — log three separate things about it, not one blended line:
+
+- **Derivation** — which assumption or dimension it came from, same as a branch's premise.
+- **Flaw** — what's actually wrong with it, stated plainly.
+- **Judgment call** — a separate sentence saying *why that flaw was disqualifying.* Not a restatement of the flaw — the reasoning that got from flaw to "kill it."
+
+**Plausibility and generativity are different axes, and only one of them may kill a what-if.** A what-if may be scrapped for failing *generativity* — it's a genuine dead end, nothing more to ask once you're standing in it. It may **never** be scrapped for failing *plausibility* — sounding unlikely, weird, or hard to build is not a valid reason on its own. Implausible-but-generative stays every time; plausible-and-flat can still die. Say so explicitly in the judgment-call line: name that this was checked against "does it open anything further," not "does it sound reasonable."
+
+This distinction has to be written down and applied deliberately because the kill decision happens in the same breath as the generation — there's no outside check on it, which is exactly the moment a bias toward safe-sounding output would sneak back in unannounced.
+
+Worked example: "What if the bridge floated?" — **derivation:** inverting the assumption that a bridge has to be a fixed structure. **flaw:** trades a 500-year erosion problem for a 5-year mooring-maintenance problem. **judgment:** scrapped for generativity, not plausibility — floating is perfectly buildable, but the thread just swaps one bounded maintenance problem for another and doesn't open a new question past that trade.
+
+Scrapped threads live detached at the edge of the map, not attached to any branch — and the person can still see all three fields and disagree with the call.
 
 ---
 
@@ -130,7 +142,7 @@ It must **not** look like a tidy tree radiating uniformly from a center. Real th
 - **Branches sit at different distances and different angles** around the topic, in whatever direction they were reached from.
 - **Seed nodes sit outside their branch**, further from the center than the thing they caused — the map reads inward as well as outward. This is where "why did it think that" lives.
 - **Depth varies per branch.** One hop where the thread ended, four where it kept going.
-- **Scrapped what-ifs float detached** at the edges, struck through, with the reason they died.
+- **Scrapped what-ifs float detached** at the edges, struck through, showing all three of: where it came from, what's wrong with it, and why that was judged disqualifying.
 - **Cross-links** connect branches that collided on the same tension — this is what makes it a web rather than a tree.
 
 Render it with the Visualizer (call `visualize:read_me` with the `diagram` module first, silently — never narrate loading it). Read `references/mindmap.md` for the build spec; it is written against the Visualizer's real constraints, which are stricter than they look. When someone wants to record or present the map, also write a standalone `.html` copy to the outputs directory and present it.
