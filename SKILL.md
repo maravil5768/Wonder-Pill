@@ -1,6 +1,6 @@
 ---
 name: wonder-pill
-description: Turns open-ended requests into things to think WITH instead of answers to accept. Audits the hidden assumptions inside a topic, inverts them into sharp "what if" provocations, branches each one outward, and delivers a fully-expanded mind map image plus the written wonderings. Use this whenever someone wants ideas, brainstorming, exploration, inspiration, or a direction to head in — "give me ideas for X", "help me brainstorm", "I'm stuck on what to do for my science fair / project / story / thesis", "what are some angles on X" — and especially when they seem to want to think alongside you rather than be handed a finished answer. Also use when someone invokes /wonder, /wonderpill, or asks Claude to "wonder about" something. Do NOT use when they need one decided answer fast, a factual lookup, or execution of a plan they've already chosen.
+description: Turns open-ended requests into things to think WITH instead of answers to accept. Audits the hidden assumptions inside a topic, inverts them into sharp "what if" provocations, branches each one outward, and delivers a fully-expanded mind map image plus the written wonderings. Fire this when the person signals they want to open up a space and think alongside you — "wonder about X", "what are the weird angles on X", "help me think about what this could be", "I want to explore, not decide yet" — or when they invoke /wonder or /wonderpill. Do NOT fire when the same topic is attached to a request for concrete, usable, or decided output: a named deliverable, a count ("give me 5 names"), a deadline ("ideas I can ship this week"), or a "which / what should I pick" question — those want straight answers, not a wonder pill. When it is genuinely unclear which they want, this skill opens by asking one line rather than branching. Not for factual lookups or executing a plan already chosen.
 ---
 
 # Wonder Pill
@@ -20,6 +20,16 @@ Everything below exists to force specificity. The central mechanism:
 > **Never invent a what-if freely. Always derive it by inverting a named assumption.**
 
 That traceability is the whole trick. If you can't say which assumption a what-if is pushing against, it isn't ready.
+
+---
+
+## Before you run: is this actually a wonder-pill ask?
+
+This skill is easy to trigger by accident on someone who just wants ideas they can use. Check first:
+
+- **If the request clearly wants concrete or decided output** — a named deliverable, a count, a deadline, "which should I pick" — don't run. Answer normally, and mention the skill is there if they'd rather open the space than close it.
+- **If it's genuinely ambiguous**, ask exactly one line before any intake, using `ask_user_input_v0` (tappable): *"Want a wonder pill — questioned assumptions and what-ifs to think with — or a straight list of ideas you can act on?"* Only start branching if they pick the wonder pill.
+- **An explicit `/wonder`, `/wonderpill`, or "wonder about X" skips this check.** They asked for it by name; go straight to Stage 0.
 
 ---
 
@@ -66,7 +76,7 @@ Rules that keep this honest:
 - **State each assumption plainly as a premise, not as a question.** The premise is a separate artifact from the what-if, and writing it out is what prevents drift into vagueness.
 - **Drop anything the person named as a hard wall.** Those aren't up for inversion — inverting them produces useless output dressed as boldness.
 - **Prefer the assumptions nobody says out loud.** "Needs to be safe" is stated. "Has to be *finished*" usually isn't, and inverting it is far more interesting.
-- **Then invert each one. The inversion IS the what-if.** One per assumption, phrased sharply and concretely.
+- **Then invert each one. The inversion IS the what-if.** One per assumption. Write it as a **full self-contained sentence that names the mechanism or consequence** — something a stranger could read cold and know what changed. "What if plants could hear, and had been responding to sound the whole time?" — not "plant hearing". This sentence, trimmed, becomes the node's **handle** on the map (see Stage 5); a noun fragment is never a handle.
 - **Keep the seed.** When an assumption came from somewhere — a real fact, a historical precedent, an oddity from Stage 1 — record where. These become *seed* nodes on the map, sitting outside their branch, showing why the thought happened at all. A map that shows its provenance is far more useful than one that presents conclusions from nowhere.
 
 ### Good vs. bad inversions
@@ -77,13 +87,17 @@ Rules that keep this honest:
 | Plants don't perceive stimuli like animals do | What if plants were different? | What if plants could hear, and had been responding to sound the whole time? |
 | The experiment happens where you are | What if location changed? | What if the same experiment ran in 40 kitchens at once and the *disagreement between them* was the data? |
 
-The pattern: strong what-ifs name a specific mechanism or consequence, so there's something to grab. Weak ones just negate.
+The pattern: strong what-ifs name a specific mechanism or consequence, so there's something to grab. Weak ones just negate. The strong-column phrasing *is* the map handle — write the what-if that way the first time and you don't have to reword it later.
+
+Then pair each what-if with a one-clause **pull**: what you'd push on, what would have to change, why it's alive. "…and every acoustics choice in the room becomes a growing decision." The handle says what the what-if is; the pull says where the thread has tension. Both ride on the node.
 
 ---
 
 ## Stage 3 — Tendrils (keep branches from dead-ending)
 
 Each what-if from Stage 2 spawns **2–3 follow-on what-ifs** — "and if that's true, then…". This is where the *wondering* quality comes from; a single question that stops after one hop reads like a prompt, not thinking.
+
+Each tendril gets the same two parts as a branch: a **handle** (a full sentence that could stand alone on the map, not a fragment) and a one-clause **pull**. "seawater as a curing agent" is not a tendril; "what if seawater cured the concrete instead of weakening it, the way Roman harbour concrete did" is.
 
 Generate tendrils by running the branch through these **dimensions**, rather than freewheeling (freewheeled tendrils feel arbitrary):
 
@@ -144,6 +158,7 @@ It must **not** look like a tidy tree radiating uniformly from a center. Real th
 - **Depth varies per branch.** One hop where the thread ended, four where it kept going.
 - **Scrapped what-ifs float detached** at the edges, struck through, showing all three of: where it came from, what's wrong with it, and why that was judged disqualifying.
 - **Cross-links** connect branches that collided on the same tension — this is what makes it a web rather than a tree.
+- **Every node states itself in plain language.** Handle is a full phrase, pull line names what to push on. The map should be readable on a first pan-through without clicking a single node — the click is for the deeper gut-check, not for decoding what the node meant.
 
 Render it with the Visualizer (call `visualize:read_me` with the `diagram` module first, silently — never narrate loading it). Read `references/mindmap.md` for the build spec; it is written against the Visualizer's real constraints, which are stricter than they look. When someone wants to record or present the map, also write a standalone `.html` copy to the outputs directory and present it.
 
@@ -158,10 +173,10 @@ The readable linear companion, for anyone who'd rather read than scan. Per branc
 ```
 ### [Short branch title]
 **Premise:** [the assumption, stated plainly]
-**What if:** [the sharp provocation]
-- [tendril]
-- [tendril]
-- [tendril]
+**What if:** [the sharp provocation — the full handle sentence]
+- **[tendril handle]** — [the pull: what it opens or what you'd push on]
+- **[tendril handle]** — [the pull]
+- **[tendril handle]** — [the pull]
 **Gut-check:** [where the real difficulty or interest hides]
 ```
 

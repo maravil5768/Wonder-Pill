@@ -12,9 +12,22 @@ Call `visualize:read_me` with the `diagram` module first (silently — never nar
 | All colors via CSS variables | `--surface-0/1/2`, `--text-primary/secondary/muted`, `--border`, `--border-strong`, `--bg-accent`. Never hardcode hex — it dies in dark mode. |
 | Never rely on color alone | Pair every category with a border style (solid / dashed / dotted) or a text label. |
 | No emoji | Tabler outline icons: `<i class="ti ti-plus">`, `ti-minus`, `ti-refresh`. |
-| Nothing below 11px | Node text 12–13px. The person zooms; don't shrink type to fit. |
+| Nothing below 11px | Handle 13px, pull 12px, premise 11–12px. The node grows to fit both lines and the person zooms — never shrink type or clip a line to make a node smaller. |
 | Sentence case everywhere | Including node labels. |
 | Begin with a visually-hidden `<h2 class="sr-only">` | One-sentence summary for screen readers. |
+
+---
+
+## Node content model — two lines on every node
+
+The failure the map keeps hitting: nodes so terse nobody can tell what they *are* or why they matter without clicking. Fix it by giving every visible node **two lines that render on the node itself**:
+
+- **Handle** (`title`) — a full plain-language phrase, sentence case, ~4–9 words, saying what this node is. A stranger reads it cold and knows what changed. "Seawater cures the concrete instead of weakening it" — never the fragment "seawater as a curing agent".
+- **Pull** (`sub`) — one clause, `--text-secondary`, ~6–12 words: what you'd push on, what would have to change, why it's alive. "then every mix decision becomes a bet on the local water".
+
+`branch` nodes also carry the **premise line above** the handle, so they show three lines: premise (muted, small) → handle → pull. `topic` is the one exception — handle only.
+
+The gut-check is a *third* layer, shown in the detail strip on click — not on the node.
 
 ---
 
@@ -24,12 +37,20 @@ Hand-writing forty absolutely-positioned divs is how this breaks. Define the map
 
 ```js
 const N = [
-  // id, type, x, y, w, title, sub, gut
-  ['b1','branch',110,250,260,'what if it fed on the environment?','assumes: durability means resisting it','the hard part is controlling the reaction, not starting it'],
-  ['b1t1','tendril',400,250,230,'seawater as a curing agent'],
-  ['s1','seed',120,150,240,'roman marine concrete got stronger in seawater'],
-  // scrapped: id, type, x, y, w, title, derivation, flaw, judgment
-  ['x1','scrapped',60,660,250,'what if it floated?',
+  // id, type, x, y, w, handle, pull, gut
+  ['b1','branch',110,250,290,
+    'what if the structure fed on the seawater instead of resisting it?',
+    'then the hard part is controlling the reaction, not starting it',
+    'this only gets interesting if corrosion is a rate problem, not a yes/no one',
+    'premise: durability means resisting the environment'],       // branch: trailing premise string
+  ['b1t1','tendril',430,250,270,
+    'what if seawater were the curing agent, the way Roman harbour concrete set underwater?',
+    'you would tune the mix to a specific coastline, not a spec sheet'],
+  ['s1','seed',120,140,270,
+    'Roman marine concrete kept gaining strength in seawater for centuries',
+    'a real case where the environment built the material up instead of wearing it down'],
+  // scrapped: id, type, x, y, w, handle, derivation, flaw, judgment
+  ['x1','scrapped',60,700,270,'what if the bridge floated?',
     'inverts: a bridge has to be a fixed structure',
     'trades a 500-year erosion problem for a 5-year mooring-maintenance problem',
     'scrapped for generativity, not plausibility — buildable, but the thread stops once you name the trade'],
@@ -41,11 +62,11 @@ Node types and their styling:
 
 | Type | Look |
 |---|---|
-| `topic` | Solid border, `--surface-2`, 14px medium |
-| `branch` | Solid border, `--bg-accent` tint, premise line 11–12px muted above the what-if |
-| `tendril` | No border or a single left rule, `--surface-1`, 12px |
-| `seed` | **Dotted** border, muted text, small `seed` label |
-| `scrapped` | **Dashed** border, 0.5 opacity, title struck through, derivation as a small muted line (like a branch's premise); flaw and judgment both shown in the detail strip on click |
+| `topic` | Solid border, `--surface-2`, handle only, 14px medium |
+| `branch` | Solid border, `--bg-accent` tint. Premise line 11–12px muted on top, handle 13px, pull 12px `--text-secondary` |
+| `tendril` | Single left rule or no border, `--surface-1`. Handle 13px, pull 12px `--text-secondary` |
+| `seed` | **Dotted** border, muted text, small `seed` label. Handle 13px, pull 12px |
+| `scrapped` | **Dashed** border, 0.5 opacity, handle struck through, derivation as a small muted line (like a branch's premise); flaw and judgment both shown in the detail strip on click |
 | feral branch | Dashed border instead of solid |
 
 ---
@@ -56,6 +77,7 @@ A tidy ring of equidistant branches is the thing to avoid — it implies every t
 
 - Canvas roughly **2000 × 1350**. Topic near the center.
 - Place each branch in its own **angular sector**, at whatever radius suits it — 300px for a short thread, 600px for one that ran long. Vary it.
+- Node widths run **~260–320px** now that each carries a handle plus a pull line — size to the content, keep it consistent within a cluster. The old ~230px single-line node is gone.
 - **Tendrils continue outward** in the same sector, or tangentially when the sector is against a canvas edge.
 - **Seeds sit further out than the branch they caused.** The map then reads both inward (why) and outward (where it went).
 - **Scrapped nodes float in an unused margin**, connected by nothing or by a faint dotted stub.
@@ -107,6 +129,8 @@ Initial scale around **0.55** — enough that the shape of the map reads immedia
 - [ ] Seeds sit outside their branches; scrapped nodes are detached
 - [ ] Every scrapped node carries all three fields — derivation, flaw, and judgment — and the judgment names generativity, not plausibility, as the reason it died
 - [ ] Every branch shows both its premise and its what-if
+- [ ] Every node is legible without clicking — handle is a full phrase, not a fragment; the pull line names what to push on
+- [ ] The map reads on a first pan-through with no clicks; the click only adds the gut-check
 - [ ] Legend present, matching the border styles actually used
 - [ ] Drag, zoom, and click all work after streaming completes
 - [ ] Stage dimensions large enough that no node is clipped at the canvas edge

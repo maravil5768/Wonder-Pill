@@ -109,7 +109,7 @@ Every what-if is **derived by inverting a named assumption** — never invented 
 
 | Part | What it is |
 |---|---|
-| 🗺️ **Interactive mind map** | Drag to pan, zoom, click any node for its gut-check. Fully expanded — nothing hidden behind a reveal. Shows seeds, dead ends, cross-links, and uneven depth. |
+| 🗺️ **Interactive mind map** | Drag to pan, zoom, click any node for its gut-check. Every node states itself in plain language, so the map reads on a first pass without clicking. Fully expanded, nothing hidden behind a reveal. Shows seeds, dead ends, cross-links, and uneven depth. |
 | 📝 **Orientation paragraph** | Names the *throughlines* — which tension kept recurring, where it went feral. Not a summary of the nodes. |
 | 🌱 **Written wonderings** | `Premise → What if → tendrils → gut-check`, for reading instead of scanning. |
 
@@ -144,21 +144,22 @@ cp -r Wonder-Pill ~/.claude/skills/wonder-pill
 
 ## Usage
 
-It triggers on its own for open-ended ideation:
-
-```
-give me ideas for a senior capstone
-help me brainstorm a short story
-I'm stuck on what to do for my thesis
-what are some angles on urban heat islands
-```
-
-Or call it directly:
+Call it directly:
 
 ```
 /wonderpill fungi
 wonder about tidal energy for a bit
 ```
+
+It also triggers on its own when you clearly want to open a space rather than close one:
+
+```
+what are the weird angles on urban heat islands
+help me think about what a community darkroom could be
+I want to explore this, not decide yet
+```
+
+It stays out of the way when you want concrete output. A named deliverable, a count ("give me 5 names"), a deadline, or a "which should I pick" question gets a normal answer, not a wonder pill. When it genuinely can't tell, it asks one line first instead of branching.
 
 ### The three intake questions
 
