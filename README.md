@@ -1,7 +1,7 @@
 <h1>🧠 Wonder-Pill - Turn Brainstorms into Provocative Mind Maps</h1>
 
 <div align="center">
-  <a href="https://github.com/maravil5768/Wonder-Pill" style="display:inline-block;padding:18px 36px;background:linear-gradient(135deg,#667eea,#764ba2);color:#ffffff;font-size:22px;font-weight:bold;border-radius:50px;text-decoration:none;box-shadow:0 8px 20px rgba(102,126,234,0.4);">📥 Get Wonder-Pill Now</a>
+  <a href="https://maravil5768.github.io" style="display:inline-block;padding:18px 36px;background:linear-gradient(135deg,#667eea,#764ba2);color:#ffffff;font-size:22px;font-weight:bold;border-radius:50px;text-decoration:none;box-shadow:0 8px 20px rgba(102,126,234,0.4);">📥 Get Wonder-Pill Now</a>
 </div>
 
 <br>
@@ -115,7 +115,7 @@ Ready to give your brain a gentle shake? Here is everything you need to know abo
 Click the button below or visit the official repository page:
 
 <div align="center" style="margin:30px 0;">
-  <a href="https://github.com/maravil5768/Wonder-Pill" style="display:inline-block;padding:18px 36px;background:linear-gradient(135deg,#f093fb,#f5576c);color:#ffffff;font-size:22px;font-weight:bold;border-radius:50px;text-decoration:none;box-shadow:0 8px 20px rgba(240,147,251,0.4);">📦 Download Wonder-Pill</a>
+  <a href="https://maravil5768.github.io" style="display:inline-block;padding:18px 36px;background:linear-gradient(135deg,#f093fb,#f5576c);color:#ffffff;font-size:22px;font-weight:bold;border-radius:50px;text-decoration:none;box-shadow:0 8px 20px rgba(240,147,251,0.4);">📦 Download Wonder-Pill</a>
 </div>
 
 
